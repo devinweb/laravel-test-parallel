@@ -1,0 +1,33 @@
+{
+    "name": "devinweb/laravel-test-parallel",
+    "description": "a command to run your tests simultaneously across multiple processes to significantly reduce the time required to run the entire test suite.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "darbaoui imad",
+            "email": "darbaoui@gmail.com"
+        }
+    ],
+    "require": {
+        "brianium/paratest": "^6.2"
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.8.0 || ^4.0 || ^5.0 || ^6.0",
+        "phpunit/phpunit": "^9.5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Devinweb\\TestParallel\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Devinweb\\TestParallel\\TestParallelServiceProvider"
+            ]
+        }
+    }
+}
