@@ -1,10 +1,10 @@
 # Laravel test parallel
 
-<a href="https://github.styleci.io/repos/335413763"><img src="https://github.styleci.io/repos/335413763/shield?branch=master" alt="StyleCI Shield"></a>
-<a href="https://travis-ci.com/darbaoui/laravel-ui-avatars"><img src="https://travis-ci.com/darbaoui/laravel-ui-avatars.svg" alt="build:passed"></a>
-<a href="https://packagist.org/packages/darbaoui/laravel-ui-avatars"><img src="https://img.shields.io/packagist/dt/darbaoui/laravel-ui-avatars.svg?style=flat-square" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/darbaoui/laravel-ui-avatars"><img src="https://img.shields.io/packagist/v/darbaoui/laravel-ui-avatars.svg?style=flat-square" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/darbaoui/laravel-ui-avatars"><img src="https://img.shields.io/packagist/l/darbaoui/laravel-ui-avatars.svg?style=flat-square" alt="License"></a>
+<a href="https://github.styleci.io/repos/342560240"><img src="https://github.styleci.io/repos/342560240/shield?branch=master" alt="StyleCI Shield"></a>
+<a href="https://travis-ci.com/devinweb/laravel-test-parallel"><img src="https://travis-ci.com/devinweb/laravel-test-parallel.svg?branch=master" alt="build:passed"></a>
+<a href="https://packagist.org/packages/devinweb/laravel-test-parallel"><img src="https://img.shields.io/packagist/dt/devinweb/laravel-test-parallel.svg?style=flat-square" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/devinweb/laravel-test-parallel"><img src="https://img.shields.io/packagist/v/devinweb/laravel-test-parallel.svg?style=flat-square" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/devinweb/laravel-test-parallel"><img src="https://img.shields.io/packagist/l/devinweb/laravel-test-parallel.svg?style=flat-square" alt="License"></a>
 
 As you may know laravel parallel testing is already available on laravel v8.x, but this package for the old version 5.x, 6.x and 7.x, to enjoy the parallel testing.
 
