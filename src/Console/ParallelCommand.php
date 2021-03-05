@@ -3,9 +3,7 @@
 namespace Devinweb\TestParallel\Console;
 
 // use Brotzka\DotenvEditor\DotenvEditor;
-use Devinweb\TestParallel\Facades\ParallelTesting;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\App;
 use Symfony\Component\Process\Process;
 
 class ParallelCommand extends Command
@@ -62,14 +60,13 @@ class ParallelCommand extends Command
      *
      * @return void
      */
-     
     public function handle()
     {
         $array = [
-            "/usr/bin/php7.4",
-            "vendor/brianium/paratest/bin/paratest",
-            "-p8",
-            "--configuration=/home/vagrant/code/EklielProject/EklielApi/phpunit.xml",
+            '/usr/bin/php7.4',
+            'vendor/brianium/paratest/bin/paratest',
+            '-p8',
+            '--configuration=/home/vagrant/code/EklielProject/EklielApi/phpunit.xml',
             "--runner=\Devinweb\TestParallel\ParallelRunner",
         ];
         $process = new Process($array, null, []);
@@ -84,9 +81,8 @@ class ParallelCommand extends Command
         });
     }
 
-
     /**
-     * Style the output that should be displayed to the end user
+     * Style the output that should be displayed to the end user.
      *
      * @param array $output
      *
@@ -95,12 +91,12 @@ class ParallelCommand extends Command
     protected function output(array $output)
     {
         foreach ($output as $value) {
-            echo $value . "\n";
+            echo $value."\n";
         }
     }
 
     /**
-     * Generate the command options
+     * Generate the command options.
      *
      * @param array $options
      *
@@ -112,7 +108,7 @@ class ParallelCommand extends Command
 
         foreach ($options as $flag => $value) {
             if ($value) {
-                $option .=" --{$flag}=$value";
+                $option .= " --{$flag}=$value";
             }
         }
 
