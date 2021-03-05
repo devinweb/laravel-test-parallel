@@ -91,7 +91,7 @@ trait TestDatabases
      */
     protected function ensureSchemaIsUpToDate()
     {
-        if (!static::$schemaIsUpToDate) {
+        if (! static::$schemaIsUpToDate) {
             Artisan::call('migrate');
 
             static::$schemaIsUpToDate = true;

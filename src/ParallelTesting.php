@@ -261,6 +261,6 @@ class ParallelTesting
      */
     protected function inParallel()
     {
-        return !empty($_SERVER['LARAVEL_PARALLEL_TESTING']) && $this->token();
+        return ! empty($_SERVER['LARAVEL_PARALLEL_TESTING']) && $this->token();
     }
 }

@@ -63,7 +63,7 @@ class ParallelConsoleOutput extends ConsoleOutput
     public function write($messages, $newline = false, $options = self::OUTPUT_NORMAL)
     {
         $messages = collect($messages)->filter(function ($message) {
-            return !Str::contains($message, $this->ignore);
+            return ! Str::contains($message, $this->ignore);
         });
 
         $this->output->write($messages->toArray(), $newline, $options);
