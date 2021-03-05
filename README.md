@@ -50,8 +50,14 @@ To enjoy with the testing parallel run this command
 
 ```shell
 
-php artisan test:parallel
+php artisan test:parallel -p6
 
+```
+
+For more options you can run
+
+```shell
+php artisan test:parallel --help
 ```
 
 ## Phpunit.xml
