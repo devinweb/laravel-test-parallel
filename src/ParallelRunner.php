@@ -82,9 +82,9 @@ class ParallelRunner implements RunnerInterface
     public function run(): void
     {
         $first_message = "Runing Phpunit in {$this->options->processes()} processes";
-        
+
         $this->output->writeln($first_message);
-        
+
         (new PhpHandler())->handle($this->options->configuration()->php());
 
         $this->forEachProcess(function () {

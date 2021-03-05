@@ -51,7 +51,6 @@ class ParallelConsoleOutput extends ConsoleOutput
      *
      * @return void
      */
-
     public function write($messages, $newline = false, $options = self::OUTPUT_NORMAL)
     {
         $messages = collect($messages)->filter(function ($message) {
