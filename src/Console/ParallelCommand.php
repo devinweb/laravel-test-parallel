@@ -135,11 +135,13 @@ class ParallelCommand extends Command
         $arguments = [];
 
         foreach ($options as $flag => $value) {
-            if($value === true)
+            if ($value === true) {
                 array_push($arguments, "--{$flag}");
-            else
+            } else {
                 array_push($arguments, "--{$flag}=$value");
+            }
         }
+
         return $arguments;
     }
 }
