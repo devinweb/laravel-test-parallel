@@ -59,7 +59,8 @@ class ParallelTesting
     /**
      * Create a new parallel testing instance.
      *
-     * @param  \Illuminate\Contracts\Container\Container  $container
+     * @param \Illuminate\Contracts\Container\Container $container
+     *
      * @return void
      */
     public function __construct(Container $container)
@@ -70,7 +71,8 @@ class ParallelTesting
     /**
      * Set a callback that should be used when resolving options.
      *
-     * @param  \Closure|null  $callback
+     * @param \Closure|null $callback
+     *
      * @return void
      */
     public function resolveOptionsUsing($resolver)
@@ -81,7 +83,8 @@ class ParallelTesting
     /**
      * Set a callback that should be used when resolving the unique process token.
      *
-     * @param  \Closure|null  $callback
+     * @param \Closure|null $callback
+     *
      * @return void
      */
     public function resolveTokenUsing($resolver)
@@ -92,7 +95,8 @@ class ParallelTesting
     /**
      * Register a "setUp" process callback.
      *
-     * @param  callable  $callback
+     * @param callable $callback
+     *
      * @return void
      */
     public function setUpProcess($callback)
@@ -103,7 +107,8 @@ class ParallelTesting
     /**
      * Register a "setUp" test case callback.
      *
-     * @param  callable  $callback
+     * @param callable $callback
+     *
      * @return void
      */
     public function setUpTestCase($callback)
@@ -114,7 +119,8 @@ class ParallelTesting
     /**
      * Register a "tearDown" process callback.
      *
-     * @param  callable  $callback
+     * @param callable $callback
+     *
      * @return void
      */
     public function tearDownProcess($callback)
@@ -125,7 +131,8 @@ class ParallelTesting
     /**
      * Register a "tearDown" test case callback.
      *
-     * @param  callable  $callback
+     * @param callable $callback
+     *
      * @return void
      */
     public function tearDownTestCase($callback)
@@ -152,7 +159,8 @@ class ParallelTesting
     /**
      * Call all of the "setUp" test case callbacks.
      *
-     * @param  \Illuminate\Foundation\Testing\TestCase  $testCase
+     * @param \Illuminate\Foundation\Testing\TestCase $testCase
+     *
      * @return void
      */
     public function callSetUpTestCaseCallbacks($testCase)
@@ -161,7 +169,7 @@ class ParallelTesting
             foreach ($this->setUpTestCaseCallbacks as $callback) {
                 $this->container->call($callback, [
                     'testCase' => $testCase,
-                    'token' => $this->token(),
+                    'token'    => $this->token(),
                 ]);
             }
         });
@@ -186,7 +194,8 @@ class ParallelTesting
     /**
      * Call all of the "tearDown" test case callbacks.
      *
-     * @param  \Illuminate\Foundation\Testing\TestCase  $testCase
+     * @param \Illuminate\Foundation\Testing\TestCase $testCase
+     *
      * @return void
      */
     public function callTearDownTestCaseCallbacks($testCase)
@@ -195,7 +204,7 @@ class ParallelTesting
             foreach ($this->tearDownTestCaseCallbacks as $callback) {
                 $this->container->call($callback, [
                     'testCase' => $testCase,
-                    'token' => $this->token(),
+                    'token'    => $this->token(),
                 ]);
             }
         });
@@ -204,7 +213,8 @@ class ParallelTesting
     /**
      * Get an parallel testing option.
      *
-     * @param  string  $option
+     * @param string $option
+     *
      * @return mixed
      */
     public function option($option)
@@ -233,7 +243,8 @@ class ParallelTesting
     /**
      * Apply the callback if tests are running in parallel.
      *
-     * @param  callable $callback
+     * @param callable $callback
+     *
      * @return void
      */
     protected function whenRunningInParallel($callback)
@@ -250,6 +261,6 @@ class ParallelTesting
      */
     protected function inParallel()
     {
-        return ! empty($_SERVER['LARAVEL_PARALLEL_TESTING']) && $this->token();
+        return !empty($_SERVER['LARAVEL_PARALLEL_TESTING']) && $this->token();
     }
 }

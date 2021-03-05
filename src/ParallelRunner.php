@@ -2,8 +2,8 @@
 
 namespace Devinweb\TestParallel;
 
-use Illuminate\Contracts\Console\Kernel;
 use Devinweb\TestParallel\Facades\ParallelTesting;
+use Illuminate\Contracts\Console\Kernel;
 use ParaTest\Runners\PHPUnit\Options;
 use ParaTest\Runners\PHPUnit\RunnerInterface;
 use ParaTest\Runners\PHPUnit\WrapperRunner;
@@ -14,7 +14,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ParallelRunner implements RunnerInterface
 {
-   
     /**
      * The application resolver callback.
      *
@@ -46,8 +45,9 @@ class ParallelRunner implements RunnerInterface
     /**
      * Creates a new test runner instance.
      *
-     * @param  \ParaTest\Runners\PHPUnit\Options  $options
-     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+     * @param \ParaTest\Runners\PHPUnit\Options                 $options
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     *
      * @return void
      */
     public function __construct(Options $options, OutputInterface $output)
@@ -64,7 +64,8 @@ class ParallelRunner implements RunnerInterface
     /**
      * Set the application resolver callback.
      *
-     * @param  \Closure|null  $resolver
+     * @param \Closure|null $resolver
+     *
      * @return void
      */
     public static function resolveApplicationUsing($resolver)
@@ -79,7 +80,7 @@ class ParallelRunner implements RunnerInterface
      */
     public function run(): void
     {
-        (new PhpHandler)->handle($this->options->configuration()->php());
+        (new PhpHandler())->handle($this->options->configuration()->php());
 
         $this->forEachProcess(function () {
             ParallelTesting::callSetUpProcessCallbacks();
@@ -107,7 +108,8 @@ class ParallelRunner implements RunnerInterface
     /**
      * Apply the given callback for each process.
      *
-     * @param  callable $callback
+     * @param callable $callback
+     *
      * @return void
      */
     protected function forEachProcess($callback)
@@ -133,7 +135,7 @@ class ParallelRunner implements RunnerInterface
     {
         $applicationResolver = static::$applicationResolver ?: function () {
             if (trait_exists(\Tests\CreatesApplication::class)) {
-                $applicationCreator = new class {
+                $applicationCreator = new class() {
                     use \Tests\CreatesApplication;
                 };
 

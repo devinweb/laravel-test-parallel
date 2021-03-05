@@ -5,11 +5,11 @@ namespace Devinweb\TestParallel;
 use Devinweb\TestParallel\Console\ParallelCommand;
 use Devinweb\TestParallel\Traits\TestDatabases;
 use Illuminate\Support\ServiceProvider;
-use Devinweb\TestParallel\ParallelTesting;
 
 class TestParallelServiceProvider extends ServiceProvider
 {
     use TestDatabases;
+
     /**
      * Register any application services.
      *
@@ -31,7 +31,7 @@ class TestParallelServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (! $this->app->runningInConsole()) {
+        if (!$this->app->runningInConsole()) {
             return;
         }
 
@@ -40,7 +40,7 @@ class TestParallelServiceProvider extends ServiceProvider
         }
 
         $this->commands([
-            ParallelCommand::class
+            ParallelCommand::class,
         ]);
     }
 }
