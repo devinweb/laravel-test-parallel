@@ -73,7 +73,7 @@ class ParallelCommand extends Command
         ), null, []);
 
         $process->setTimeout(null);
-        
+
         return $process->run(function ($type, $line) {
             if (Process::ERR === $type) {
                 $this->output->writeln("<bg=red;fg=white>$line</>");
@@ -110,7 +110,7 @@ class ParallelCommand extends Command
         $options = Arr::where($options, function ($value, $key) {
             return is_string($value) || $value == true;
         });
-        
+
         $arguments = $this->buildCommand($options);
 
         if (! file_exists($file = base_path('phpunit.xml'))) {
