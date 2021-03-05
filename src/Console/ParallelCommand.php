@@ -108,7 +108,7 @@ class ParallelCommand extends Command
     protected function paratestArguments($options)
     {
         $options = Arr::where($options, function ($value, $key) {
-            return is_string($value);
+            return is_string($value) || $value == true;
         });
 
         $arguments = $this->buildCommand($options);
@@ -135,9 +135,11 @@ class ParallelCommand extends Command
         $arguments = [];
 
         foreach ($options as $flag => $value) {
-            array_push($arguments, "--{$flag}=$value");
+            if($value === true)
+                array_push($arguments, "--{$flag}");
+            else
+                array_push($arguments, "--{$flag}=$value");
         }
-
         return $arguments;
     }
 }
