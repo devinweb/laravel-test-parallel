@@ -4,8 +4,8 @@ namespace Devinweb\TestParallel\Console;
 
 // use Brotzka\DotenvEditor\DotenvEditor;
 use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
 use Illuminate\Support\Arr;
+use Symfony\Component\Process\Process;
 
 class ParallelCommand extends Command
 {
@@ -74,7 +74,6 @@ class ParallelCommand extends Command
 
         $process->setTimeout(null);
 
-
         return $process->run(function ($type, $line) {
             if (Process::ERR === $type) {
                 $this->output->writeln("<bg=red;fg=white>$line</>");
@@ -83,7 +82,6 @@ class ParallelCommand extends Command
             }
         });
     }
-
 
     /**
      * Get the PHP binary to execute.
@@ -115,7 +113,7 @@ class ParallelCommand extends Command
 
         $arguments = $this->buildCommand($options);
 
-        if (!file_exists($file = base_path('phpunit.xml'))) {
+        if (! file_exists($file = base_path('phpunit.xml'))) {
             $file = base_path('phpunit.xml.dist');
         }
 
@@ -124,7 +122,6 @@ class ParallelCommand extends Command
             "--runner=\Devinweb\TestParallel\ParallelRunner",
         ], $arguments);
     }
-
 
     /**
      * Generate the command options.
