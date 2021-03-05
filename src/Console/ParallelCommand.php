@@ -2,7 +2,11 @@
 
 namespace Devinweb\TestParallel\Console;
 
+// use Brotzka\DotenvEditor\DotenvEditor;
+use Devinweb\TestParallel\Facades\ParallelTesting;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\App;
+use Symfony\Component\Process\Process;
 
 class ParallelCommand extends Command
 {
@@ -61,9 +65,23 @@ class ParallelCommand extends Command
      
     public function handle()
     {
-        $options = $this->buildCommand($this->options());
-        exec("vendor/bin/paratest {$options}", $output);
-        $this->output($output);
+        $array = [
+            "/usr/bin/php7.4",
+            "vendor/brianium/paratest/bin/paratest",
+            "-p8",
+            "--configuration=/home/vagrant/code/EklielProject/EklielApi/phpunit.xml",
+            "--runner=\Devinweb\TestParallel\ParallelRunner",
+        ];
+        $process = new Process($array, null, []);
+        $process->setTimeout(null);
+
+        return $process->run(function ($type, $line) {
+            if (Process::ERR === $type) {
+                $this->output->writeln("<bg=red;fg=white>$line</>");
+            } else {
+                $this->output->write($line);
+            }
+        });
     }
 
 

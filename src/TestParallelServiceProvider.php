@@ -2,10 +2,14 @@
 
 namespace Devinweb\TestParallel;
 
+use Devinweb\TestParallel\Console\ParallelCommand;
+use Devinweb\TestParallel\Traits\TestDatabases;
 use Illuminate\Support\ServiceProvider;
+use Devinweb\TestParallel\ParallelTesting;
 
 class TestParallelServiceProvider extends ServiceProvider
 {
+    use TestDatabases;
     /**
      * Register any application services.
      *
@@ -13,7 +17,11 @@ class TestParallelServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if ($this->app->runningInConsole()) {
+            $this->app->singleton('parallelTesting', function () {
+                return new ParallelTesting($this->app);
+            });
+        }
     }
 
     /**
@@ -27,8 +35,12 @@ class TestParallelServiceProvider extends ServiceProvider
             return;
         }
 
+        if ($this->app->runningInConsole()) {
+            $this->bootTestDatabase();
+        }
+
         $this->commands([
-            Console\ParallelCommand::class
+            ParallelCommand::class
         ]);
     }
 }
