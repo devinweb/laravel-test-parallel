@@ -5,7 +5,7 @@
 <a href="https://packagist.org/packages/devinweb/laravel-test-parallel"><img src="https://img.shields.io/packagist/v/devinweb/laravel-test-parallel.svg?style=flat-square" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/devinweb/laravel-test-parallel"><img src="https://img.shields.io/packagist/l/devinweb/laravel-test-parallel.svg?style=flat-square" alt="License"></a>
 
-As you may know laravel parallel testing is already available on [laravel v8.x](https://laravel.com/docs/8.x/testing#running-tests-in-parallel), but this package deosn't support the old versions 5.x, 6.x and 7.x, to enjoy the parallel testing.
+As you may know laravel parallel testing is already available on [laravel v8.x](https://laravel.com/docs/8.x/testing#running-tests-in-parallel), but this feature not exitst on the old versions 5.x, 6.x and 7.x, So this package is here to fix this gap and enjoy the parallel testing.
 
 It's based on [brianium/paratest](https://github.com/paratestphp/paratest) and implements the same logic that handle the testing command used in laravel, developed by [Nuno Maduro](https://github.com/nunomaduro).
 

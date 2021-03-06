@@ -65,12 +65,19 @@ class ParallelCommand extends Command
     {
         $options = $this->options();
 
-        $process = new Process(array_merge(
+        $envs = App(Parser::class)->parseEnv($this->findPhpUnitFile());
+
+        $process = new Process(
+            array_merge(
                 // Binary ...
                 $this->binary(),
                 // Arguments ...
                 $this->paratestArguments($options)
-        ), null, []);
+            ),
+            null,
+            // Envs
+            $envs
+        );
 
         $process->setTimeout(null);
 
@@ -113,9 +120,7 @@ class ParallelCommand extends Command
 
         $arguments = $this->buildCommand($options);
 
-        if (! file_exists($file = base_path('phpunit.xml'))) {
-            $file = base_path('phpunit.xml.dist');
-        }
+        $file = $this->findPhpUnitFile();
 
         return array_merge([
             "--configuration=$file",
@@ -143,5 +148,20 @@ class ParallelCommand extends Command
         }
 
         return $arguments;
+    }
+
+
+    /**
+     * Find the Phpunit path.
+     *
+     *
+     * @return string
+     */
+    protected function findPhpUnitFile()
+    {
+        if (! file_exists($file = base_path('phpunit.xml'))) {
+            $file = base_path('phpunit.xml.dist');
+        }
+        return $file;
     }
 }
