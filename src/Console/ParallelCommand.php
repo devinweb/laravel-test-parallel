@@ -4,7 +4,6 @@ namespace Devinweb\TestParallel\Console;
 
 // use Brotzka\DotenvEditor\DotenvEditor;
 
-use Devinweb\TestParallel\Util\Parser;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Symfony\Component\Process\Process;
@@ -76,7 +75,7 @@ class ParallelCommand extends Command
             ),
             null,
             // Envs
-            ["LARAVEL_PARALLEL_TESTING" => 1]
+            ['LARAVEL_PARALLEL_TESTING' => 1]
         );
 
         $process->setTimeout(null);
@@ -150,7 +149,6 @@ class ParallelCommand extends Command
         return $arguments;
     }
 
-
     /**
      * Find the Phpunit path.
      *
@@ -162,6 +160,7 @@ class ParallelCommand extends Command
         if (! file_exists($file = base_path('phpunit.xml'))) {
             $file = base_path('phpunit.xml.dist');
         }
+
         return $file;
     }
 }
