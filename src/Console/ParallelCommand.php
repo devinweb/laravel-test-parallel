@@ -67,8 +67,6 @@ class ParallelCommand extends Command
     {
         $options = $this->options();
 
-        $envs = App(Parser::class)->parseEnv($this->findPhpUnitFile());
-
         $process = new Process(
             array_merge(
                 // Binary ...
@@ -78,7 +76,7 @@ class ParallelCommand extends Command
             ),
             null,
             // Envs
-            $envs
+            ["LARAVEL_PARALLEL_TESTING" => 1]
         );
 
         $process->setTimeout(null);

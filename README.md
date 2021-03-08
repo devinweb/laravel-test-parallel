@@ -62,5 +62,4 @@ php artisan test:parallel --help
 
 ## Phpunit.xml
 
-If you have any error related to overriding your environment during the tests, you can force them by adding in each env variable on your phpunit.xml file
-[`force=true`](https://github.com/sebastianbergmann/phpunit/issues/2353).
+Make sure to update all `<env .../>` to `<server .../>` in your **phpunit.xml** file.

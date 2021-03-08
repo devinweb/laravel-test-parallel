@@ -2,15 +2,13 @@
 
 namespace Devinweb\TestParallel\Traits;
 
-use Devinweb\TestParallel\ParallelTesting;
+use Devinweb\TestParallel\Facades\ParallelTesting;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-
-// use Illuminate\Testing\ParallelTesting;
 
 trait TestDatabases
 {
@@ -28,17 +26,17 @@ trait TestDatabases
      */
     protected function bootTestDatabase()
     {
-        // (new ParallelTesting($this->app))->setUpProcess(function () {
-        //     $this->whenNotUsingInMemoryDatabase(function ($database) {
-        //         if ((new ParallelTesting($this->app))->option('recreate_databases')) {
-        //             Schema::dropDatabaseIfExists(
-        //                 $this->testDatabase($database)
-        //             );
-        //         }
-        //     });
-        // });
+        ParallelTesting::setUpProcess(function () {
+            $this->whenNotUsingInMemoryDatabase(function ($database) {
+                if (ParallelTesting::option('recreate_databases')) {
+                    Schema::dropDatabaseIfExists(
+                        $this->testDatabase($database)
+                    );
+                }
+            });
+        });
 
-        (new ParallelTesting($this->app))->setUpTestCase(function ($testCase) {
+        ParallelTesting::setUpTestCase(function ($testCase) {
             $uses = array_flip(class_uses_recursive(get_class($testCase)));
 
             $databaseTraits = [
@@ -169,7 +167,7 @@ trait TestDatabases
      */
     protected function testDatabase($database)
     {
-        $token = (new ParallelTesting($this->app))->token();
+        $token = ParallelTesting::token();
 
         return "{$database}_test_{$token}";
     }
